@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*/__pycache__/
+data/raw/
+model/*.keras
+model/*.h5
+model/class_names.json
