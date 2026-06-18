@@ -1,0 +1,7 @@
+{
+  "number_of_classes": 10,
+  "samples_per_class": 5000,
+  "epochs": 5,
+  "test_accuracy": 0.9097999930381775,
+  "test_loss": 0.2726083993911743
+}

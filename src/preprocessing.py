@@ -22,6 +22,7 @@ def is_canvas_empty(image_data):
 
 
 def crop_drawing(grayscale_pixels):
+    # Crop around dark strokes so small doodles are not lost in canvas whitespace.
     drawing_pixels = np.where(grayscale_pixels < EMPTY_CANVAS_THRESHOLD)
 
     if len(drawing_pixels[0]) == 0:
@@ -46,6 +47,7 @@ def preprocess_canvas_image(image_data):
     image = image.resize(MODEL_INPUT_SIZE, Image.Resampling.LANCZOS)
 
     pixels = np.array(image).astype("float32")
+    # Quick, Draw! bitmaps use bright strokes on a dark background.
     pixels = 1.0 - (pixels / 255.0)
 
     return pixels.reshape(1, MODEL_INPUT_SIZE[0], MODEL_INPUT_SIZE[1], 1)

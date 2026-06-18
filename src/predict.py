@@ -24,6 +24,7 @@ def load_model():
         return None
 
     try:
+        # Delay TensorFlow import so the dummy fallback stays lightweight.
         import tensorflow as tf
 
         model = tf.keras.models.load_model(MODEL_PATH)
@@ -46,6 +47,7 @@ def predict_top_k(model_artifacts, image_array, top_k=TOP_K_PREDICTIONS):
     class_names = model_artifacts["class_names"]
 
     probabilities = model.predict(image_array, verbose=0)[0]
+    # NumPy sorts ascending, so take the final scores and reverse their order.
     top_indices = np.argsort(probabilities)[-top_k:][::-1]
 
     return [

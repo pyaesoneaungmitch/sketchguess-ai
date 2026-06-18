@@ -1,8 +1,11 @@
+# Local Python environment and caches
 .venv/
 __pycache__/
 */__pycache__/
+
+# Downloaded dataset files
 data/raw/
+
+# Generated trained model binaries
 model/*.keras
 model/*.h5
-model/class_names.json
-model/metrics.json
