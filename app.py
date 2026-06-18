@@ -6,6 +6,7 @@ from src.predict import load_model, predict_top_k
 from src.preprocessing import preprocess_canvas_image
 from src.ui_helpers import (
     display_instructions,
+    display_model_info,
     display_session_score,
     display_top_predictions,
 )
@@ -48,6 +49,9 @@ initialize_session_state()
 st.title("SketchGuess AI")
 display_instructions()
 
+model_artifacts = load_model()
+display_model_info(model_artifacts is not None)
+
 canvas_result = st_canvas(
     fill_color="rgba(255, 255, 255, 0)",
     stroke_width=12,
@@ -75,8 +79,7 @@ if predict_clicked:
         st.session_state.pending_feedback = False
         st.warning("Draw something on the canvas before predicting.")
     else:
-        model = load_model()
-        st.session_state.predictions = predict_top_k(model, processed_image)
+        st.session_state.predictions = predict_top_k(model_artifacts, processed_image)
         st.session_state.pending_feedback = True
 
 if st.session_state.predictions:

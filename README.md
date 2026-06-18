@@ -23,6 +23,7 @@ sketchguess-ai/
 |-- notebooks/
 |-- scripts/
 |   |-- download_quickdraw_data.py
+|   |-- test_prediction.py
 |   `-- train_model.py
 `-- src/
     |-- config.py
@@ -85,6 +86,46 @@ After training, the script saves:
 ```text
 model/sketch_model.keras
 model/class_names.json
+model/metrics.json
+assets/confusion_matrix.png
+assets/training_history.png
 ```
 
 Run the Streamlit app again after training, and it will use the saved model automatically. If those files are missing, the app keeps using dummy predictions.
+
+## Evaluate Model
+
+After training, run a small prediction check:
+
+```powershell
+python scripts/test_prediction.py
+```
+
+This loads the saved model, picks a few random examples from the raw Quick, Draw! files, prints the top 3 predictions for each sample, and saves:
+
+```text
+assets/sample_predictions.png
+```
+
+Useful generated assets:
+
+```text
+assets/training_history.png
+assets/confusion_matrix.png
+assets/sample_predictions.png
+```
+
+These images are handy for a showcase README, presentation, or quick sanity check after training.
+
+## Generated Files
+
+Raw dataset files and trained model outputs are ignored by Git because they are large or generated locally:
+
+```text
+data/raw/
+model/sketch_model.keras
+model/class_names.json
+model/metrics.json
+```
+
+Anyone cloning the project can recreate them with the download and training commands above.

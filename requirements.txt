@@ -4,3 +4,4 @@ tensorflow
 numpy
 Pillow
 requests
+matplotlib

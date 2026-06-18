@@ -5,3 +5,4 @@ data/raw/
 model/*.keras
 model/*.h5
 model/class_names.json
+model/metrics.json

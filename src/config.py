@@ -28,8 +28,13 @@ CROP_PADDING = 10
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 MODEL_DIR = PROJECT_ROOT / "model"
+ASSETS_DIR = PROJECT_ROOT / "assets"
 MODEL_PATH = MODEL_DIR / "sketch_model.keras"
 CLASS_NAMES_PATH = MODEL_DIR / "class_names.json"
+MODEL_METRICS_PATH = MODEL_DIR / "metrics.json"
+CONFUSION_MATRIX_PATH = ASSETS_DIR / "confusion_matrix.png"
+TRAINING_HISTORY_PATH = ASSETS_DIR / "training_history.png"
+SAMPLE_PREDICTIONS_PATH = ASSETS_DIR / "sample_predictions.png"
 
 QUICKDRAW_BASE_URL = "https://storage.googleapis.com/quickdraw_dataset/full/numpy_bitmap"
 

@@ -1,10 +1,52 @@
+import json
+
 import streamlit as st
 
-from src.config import CONFIDENCE_DECIMALS, CONFIDENCE_MAX, CONFIDENCE_MIN
+from src.config import (
+    CONFIDENCE_DECIMALS,
+    CONFIDENCE_MAX,
+    CONFIDENCE_MIN,
+    MODEL_METRICS_PATH,
+)
 
 
 def display_instructions():
     st.write("Draw a simple doodle, then ask the app to guess what it is.")
+
+
+def load_model_metrics():
+    if not MODEL_METRICS_PATH.exists():
+        return None
+
+    try:
+        return json.loads(MODEL_METRICS_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
+def display_model_info(is_using_trained_model):
+    if is_using_trained_model:
+        st.caption("Prediction mode: trained model")
+    else:
+        st.caption("Prediction mode: dummy fallback")
+
+    metrics = load_model_metrics()
+
+    with st.expander("Model info"):
+        if is_using_trained_model:
+            st.write("The app is using the saved TensorFlow/Keras model.")
+        else:
+            st.write("No trained model is loaded, so the app is using dummy predictions.")
+
+        if metrics is None:
+            st.write("No saved training metrics found yet.")
+            return
+
+        st.write(f"Classes: {metrics['number_of_classes']}")
+        st.write(f"Samples per class: {metrics['samples_per_class']}")
+        st.write(f"Training epochs: {metrics['epochs']}")
+        st.write(f"Test accuracy: {metrics['test_accuracy']:.2%}")
+        st.write(f"Test loss: {metrics['test_loss']:.4f}")
 
 
 def display_top_predictions(predictions):
