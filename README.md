@@ -1,10 +1,20 @@
+![SketchGuess AI project poster](assets/poster/Poster.png)
+
 # SketchGuess AI
 
 SketchGuess AI is an interactive doodle-recognition web app built with Streamlit and TensorFlow/Keras. Users draw one supported object on a canvas, and a small convolutional neural network returns its top three guesses with confidence scores.
 
 The project combines a reproducible machine learning pipeline with a friendly showcase interface. If a trained model is unavailable, the app keeps working through a clearly labelled dummy-prediction fallback.
 
-![Sample predictions from the trained model](assets/sample_predictions.png)
+## Demo Materials
+
+- [Watch the demo video](assets/demo/Demo.mp4)
+- [View the main app screenshot](assets/screenshots/UIPage.png)
+- [View prediction demo screenshot 1](assets/screenshots/Demo_Preview.png)
+- [View prediction demo screenshot 2](assets/screenshots/Demo_Preview2.png)
+- [View the project poster](assets/poster/Poster.png)
+
+![SketchGuess AI app preview](assets/screenshots/UIPage.png)
 
 ## Key Features
 
